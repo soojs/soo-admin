@@ -34,15 +34,16 @@ npm run dist
 
 ### 目录结构
 
+```
 src/
-   actions: redux actions
-   common: 公共组件
-   constants: 常量
-   main: 应用入口
-   middlewares： redux 中间件
-   reduces: redux reduces
-   services: cgi
-   store: redux store
-
+ |---- actions: redux actions
+ |---- common: 公共组件
+ |---- constants: 常量
+ |---- main: 应用入口
+ |---- middlewares： redux 中间件
+ |---- reduces: redux reduces
+ |---- services: cgi
+ |---- store: redux store
+```
 
 
