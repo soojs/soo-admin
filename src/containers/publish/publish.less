@@ -1,0 +1,34 @@
+.m-publish {
+    .article-type {
+        .type-item {
+            display: inline-block;
+            width: 80px;
+            margin-right:40px;
+            cursor: pointer;
+        }
+
+        .text {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .icon {
+            display: block;
+            height:80px;
+            background-image: url('./article-type.png');
+
+            &.normal {
+                background-position: 0 0;
+            }
+
+            &.richtext {
+                background-position: -82px 0;
+            }
+
+            &.markdown {
+                background-position: -164px 0;
+            }
+        }
+    }
+}

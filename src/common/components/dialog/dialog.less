@@ -1,0 +1,66 @@
+.c-dialog{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    &.show {
+        display: flex;
+    }
+
+    .dialog {
+        position: relative;
+        z-index: 2;
+        min-width: 250px;
+        background-color: #fff;
+
+        .hd {
+            height: 30px;
+            line-height: 30px;
+            background-color: rgb(244,244,244);
+            color: #333;
+            text-indent: 10px;
+            text-align: left;
+            overflow: hidden;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .bd {
+            padding:15px;
+        }
+
+        .row {
+            margin-bottom: 10px;
+        }
+
+        .d-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 23px;
+            color: rgb(175,175,175);
+            cursor: pointer;
+            font-size: 20px;
+
+            &:hover{
+                color: red;
+            }
+        }
+
+    }
+    .d-mask {
+        z-index: 1;
+        position: fixed;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}

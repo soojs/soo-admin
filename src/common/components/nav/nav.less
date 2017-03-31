@@ -1,0 +1,40 @@
+.c-nav {
+    position: fixed;
+    left: 0;
+    top: 50px;
+    width: 200px;
+    bottom: 0;
+    background-color: #383e4c;
+
+    ul {
+        margin-top: 50px;
+    }
+
+    li {
+        line-height: 45px;
+        height: 45px;
+
+        a {
+            padding-left: 20px;
+            display: block;
+            color: #e2e2e2;
+
+            &.selected {
+                background-color: #505664;
+                color: #f59425;
+            }
+        }
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .material-icons {
+            margin-right: 10px;
+            width: 26px;
+            height: 26px;
+        }
+
+    }
+}
