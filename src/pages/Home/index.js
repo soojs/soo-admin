@@ -90,7 +90,7 @@ class Home extends Component {
             <Route path="/cate" component={CategoryComponent} />
           </Content>
           <Footer>
-            Blog Console For Bee @2018
+            Console For Bee-Blog @2018
           </Footer>
         </Layout>
       </Layout>
