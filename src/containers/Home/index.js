@@ -9,12 +9,12 @@ const { Header, Footer, Sider, Content } = Layout
 
 const Loading = () => <div>loading</div>
 
-const PostListComponent = Loadable({
-  loader: () => import('../../components/Post'),
+const PostList = Loadable({
+  loader: () => import('../PostList'),
   loading: Loading
 })
-const PostDetailComponent = Loadable({
-  loader: () => import('../../components/Post/Detail'),
+const PostInfo = Loadable({
+  loader: () => import('../PostInfo'),
   loading: Loading
 })
 const UserListComponent = Loadable({
@@ -81,9 +81,9 @@ class Home extends Component {
             />
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-            <Route exact path='/' component={PostListComponent} />
-            <Route exact path='/post' component={PostListComponent} />
-            <Route path='/post/:id' component={PostDetailComponent} />
+            <Route exact path='/' component={PostList} />
+            <Route exact path='/post' component={PostList} />
+            <Route path='/post/:id' component={PostInfo} />
             <Route path='/user' component={UserListComponent} />
             <Route path='/tag' component={TagComponent} />
             <Route path='/cate' component={CategoryComponent} />

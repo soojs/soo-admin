@@ -27,11 +27,3 @@
   to { transform: rotate(360deg); }
 }
 
-.gutter-example .ant-row > div {
-  background: transparent;
-  border: 0;
-}
-.gutter-box {
-  background: #00A0E9;
-  padding: 5px 0;
-}

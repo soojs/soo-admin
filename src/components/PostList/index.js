@@ -1,17 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Table, Icon, Divider } from 'antd'
-
-import { PostService } from '../../apis'
+import map from 'lodash/map'
 
 class PostList extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      data: [],
-      pagination: {},
-      loading: false
-    }
     this.columns = [{
       title: '标题',
       dataIndex: 'title',
@@ -61,26 +56,6 @@ class PostList extends Component {
     }
   }
   /**
-   * 从远程加载数据
-   */
-  fetch (params = {}) {
-    this.setState({ loading: true })
-    PostService
-      .page()
-      .then((res) => {
-        const { count, rows } = res.data
-        const pagination = this.state.pagination
-        pagination.total = count
-        this.setState({
-          data: rows,
-          pagination
-        })
-      })
-      .finally(() => {
-        this.setState({ loading: false })
-      })
-  }
-  /**
    * 表格条件变化处理
    */
   handleTableChange (pagination, filters, sorter) {
@@ -102,25 +77,29 @@ class PostList extends Component {
     e.preventDefault()
     console.log('handle delete')
   }
-  componentDidMount () {
-    this.fetch()
-  }
   render () {
     const columns = this.columns
     const rowSelection = this.rowSelection
+    const { ids, isFetching, index, total } = this.props.pagination
+    const dataSource = map(ids, (id) => {
+      return this.props.entities[id]
+    })
     return (
-      <div className='post-list'>
-        <Table rowKey='id'
-          rowSelection={rowSelection}
-          columns={columns}
-          dataSource={this.state.data}
-          pagination={this.state.pagination}
-          loading={this.state.loading}
-          onChange={this.handleTableChange}
-        />
-      </div>
+      <Table rowKey='id'
+        rowSelection={rowSelection}
+        columns={columns}
+        dataSource={dataSource}
+        pagination={{ current: index, pageSize: 10, total }}
+        loading={isFetching}
+        onChange={this.handleTableChange}
+      />
     )
   }
+}
+
+PostList.propTypes = {
+  pagination: PropTypes.object.isRequired,
+  entities: PropTypes.object.isRequired
 }
 
 export default PostList

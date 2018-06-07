@@ -1,0 +1,30 @@
+.bee-blog-main {
+  min-height: 100vh;
+}
+.bee-blog-main .logo {
+  height: 32px;
+  line-height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
+  font-size: 22px;
+  letter-spacing: 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.bee-blog-main .logo-img {
+  width: 100%;
+}
+.bee-blog-main .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+.bee-blog-main .trigger:hover {
+  color: #1890ff;
+}
+.bee-blog-main .ant-layout-sider {
+  background-color: #fff;
+}
