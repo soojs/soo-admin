@@ -3,7 +3,7 @@ import merge from 'lodash/merge'
 
 import * as ActionTypes from '../actions'
 import paginate from './paginate'
-// import normalize from './normalize'
+import { normalizePosts, normalizeUsers } from './normalize'
 
 // 登录用户
 const initLoginUser = {
@@ -58,16 +58,20 @@ const loginUser = (state = initLoginUser, action) => {
 //     }
 //   })
 // })
-const initEntities = {
-  users: {},
-  posts: {}
-}
-const entities = (state = initEntities, action) => {
-  if (action.entities) {
-    return merge({}, state, action.entities)
-  }
-  return state
-}
+// const initEntities = {
+//   users: {},
+//   posts: {}
+// }
+// const entities = (state = initEntities, action) => {
+//   if (action.entities) {
+//     return merge({}, state, action.entities)
+//   }
+//   return state
+// }
+const entities = combineReducers({
+  posts: normalizePosts(),
+  users: normalizeUsers()
+})
 
 // 分页对象
 const pagination = combineReducers({

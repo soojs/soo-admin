@@ -10,7 +10,6 @@ export const POST_PAGE_FAILURE = 'POST_PAGE_FAILURE'
 const fetchPostPage = args => ({
   [CALL_API]: {
     types: [ POST_PAGE_REQUEST, POST_PAGE_SUCCESS, POST_PAGE_FAILURE ],
-    method: 'GET',
     url: '/api/v1/post',
     data: args,
     transformResponse: (data = {}) => {
@@ -32,7 +31,6 @@ export const POST_INFO_FAILURE = 'POST_INFO_FAILURE'
 const fetchPostInfo = (args = {}) => ({
   [CALL_API]: {
     types: [ POST_INFO_REQUEST, POST_INFO_SUCCESS, POST_INFO_FAILURE ],
-    method: 'GET',
     url: `/api/v1/post/${args.id}?type=0`,
     transformResponse: (data = {}) => {
       // 如果没有返回content，从contents列表中解析出content
@@ -82,3 +80,7 @@ const savePost = (args = {}) => ({
 export const createOrUpdatePost = args => (dispatch, state) => {
   return dispatch(savePost(args))
 }
+
+export const POST_REMOVE_REQUEST = 'POST_REMOVE_REQUEST'
+export const POST_REMOVE_SUCCESS = 'POST_REMOVE_SUCCESS'
+export const POST_REMOVE_FAILURE = 'POST_REMOVE_FAILURE'

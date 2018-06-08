@@ -38,15 +38,20 @@ const fetch = ({ url, method = 'GET', data }) => {
       return Promise.reject(err)
     })
 }
-
+/**
+ * 统一的`Ajax action`配置参数key
+ */
 export const CALL_API = 'Call Api'
-
+/**
+ * A standard middleware for async action,
+ * see [Middleware](https://redux.js.org/advanced/middleware)
+ */
 export default store => next => action => {
   const callAPI = action[CALL_API]
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
-  const { url, method, data, types } = callAPI
+  const { types } = callAPI
   const [ requestType, successType, failureType ] = types
 
   const actionWith = preAction => {
@@ -66,6 +71,7 @@ export default store => next => action => {
 
   next(actionWith({ type: requestType }))
 
+  const { url, method, data } = callAPI
   return fetch({ url, method, data })
     .then((response) => {
       const { code } = response
@@ -100,7 +106,7 @@ export default store => next => action => {
         // 未知失败，可能是上层js处理错误
         next(actionWith({
           error: err.message || 'Somthing bad happened',
-          type: failureType
+          type: RESET_GLOBAL_ERROR
         }))
       }
     })
