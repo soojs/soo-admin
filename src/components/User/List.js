@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Table, Icon, Dropdown, Menu, Button } from 'antd'
+import map from 'lodash/map'
 
 class UserList extends Component {
   constructor (props) {
@@ -64,21 +66,6 @@ class UserList extends Component {
       })
     }
   }
-  state = {
-    data: [],
-    pagination: {},
-    loading: false,
-    hasSelected: false,
-    batchDeleteLoading: false
-  }
-  /**
-   * 从远程加载数据
-   */
-  fetch = (params = {}) => {
-    // this.setState({
-    //   loading: true,
-    // });
-  }
   handleMenuClick = (e) => {
     if (e.key === 'edit') {
       this.handleItemEdit()
@@ -109,31 +96,27 @@ class UserList extends Component {
   }
   render () {
     const columns = this.columns
-    const rowSelection = {
-      selectedRowKeys: [],
-      onChange: this.onSelectChange
-    }
-    const hasSelected = false
+    const rowSelection = this.rowSelection
+    const { ids, isFetching, index, total } = this.props.pagination
+    const dataSource = map(ids, (id) => {
+      return this.props.entities[id]
+    })
     return (
-      <div className='post-list'>
-        <div className='post-list-actions'>
-          <Button type='primary'
-            onClick={this.handleBatchDelete}
-            disabled={!hasSelected}
-            loading={this.batchDeleteLoading}
-          />
-        </div>
-        <Table rowKey='id'
-          rowSelection={rowSelection}
-          columns={columns}
-          dataSource={this.state.data}
-          pagination={this.state.pagination}
-          loading={this.state.loading}
-          onChange={this.handleTableChange}
-        />
-      </div>
+      <Table rowKey='id'
+        rowSelection={rowSelection}
+        columns={columns}
+        dataSource={dataSource}
+        pagination={{ current: index, pageSize: 10, total }}
+        loading={isFetching}
+        onChange={this.handleTableChange}
+      />
     )
   }
+}
+
+UserList.propTypes = {
+  pagination: PropTypes.object.isRequired,
+  entities: PropTypes.object.isRequired
 }
 
 export default UserList

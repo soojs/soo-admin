@@ -17,8 +17,8 @@ const PostInfo = Loadable({
   loader: () => import('../PostInfo'),
   loading: Loading
 })
-const UserListComponent = Loadable({
-  loader: () => import('../../components/User'),
+const UserList = Loadable({
+  loader: () => import('../UserList'),
   loading: Loading
 })
 const TagComponent = Loadable({
@@ -84,7 +84,7 @@ class Home extends Component {
             <Route exact path='/' component={PostList} />
             <Route exact path='/post' component={PostList} />
             <Route path='/post/:id' component={PostInfo} />
-            <Route path='/user' component={UserListComponent} />
+            <Route path='/user' component={UserList} />
             <Route path='/tag' component={TagComponent} />
             <Route path='/cate' component={CategoryComponent} />
           </Content>

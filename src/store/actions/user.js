@@ -1,3 +1,6 @@
+import { normalize } from 'normalizr'
+
+import { Schemas } from '../schemas'
 import { CALL_API } from '../../middleware/api'
 
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
@@ -26,11 +29,15 @@ export const USER_PAGE_REQUEST = 'USER_PAGE_REQUEST'
 export const USER_PAGE_SUCCESS = 'USER_PAGE_SUCCESS'
 export const USER_PAGE_FAILURE = 'USER_PAGE_FAILURE'
 
-const fetchUserPage = pageArgs => ({
+const fetchUserPage = args => ({
   [CALL_API]: {
     types: [ USER_PAGE_REQUEST, USER_PAGE_SUCCESS, USER_PAGE_FAILURE ],
-    endpoint: `/api/v1/user`,
-    schema: null
+    url: '/api/v1/user',
+    data: args,
+    transformResponse: (data = {}) => {
+      const { count, rows } = data
+      return Object.assign({ count }, normalize(rows, Schemas.POST_LIST))
+    }
   }
 })
 
