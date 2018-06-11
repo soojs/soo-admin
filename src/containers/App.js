@@ -36,7 +36,21 @@ class App extends Component {
     const isAuth = loginUser.uid > 0 && !!loginUser.username
     return (
       <Fragment>
-        <Route path='/login' component={Login} />
+        <Route path='/login'
+          render={props =>
+            !isAuth ? (
+              <Login />
+            ) : (
+              <Redirect
+                exact
+                to={{
+                  pathname: '/',
+                  state: { from: props.location }
+                }}
+              />
+            )
+          }
+        />
         <PrivateRoute isAuth={isAuth} path='/' component={Home} exact />
         <PrivateRoute isAuth={isAuth} path='/post' component={Home} />
         <PrivateRoute isAuth={isAuth} path='/user' component={Home} />

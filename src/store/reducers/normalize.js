@@ -3,10 +3,11 @@ import * as ActionTypes from '../actions'
 
 const READ_ACTION = 'read'
 const SAVE_ACTION = 'save'
+const UPDATE_ACTION = 'update'
 const REMOVE_ACTION = 'remove'
 
 export const normalizePosts = () => {
-  const updateEntityStatus = (state = {}, action) => {
+  const updateEntity = (state = {}, action) => {
     switch (action.type) {
       case READ_ACTION:
         return {
@@ -18,6 +19,11 @@ export const normalizePosts = () => {
           ...state,
           isSaveing: action.status
         }
+      case UPDATE_ACTION:
+        return {
+          ...state,
+          isUpdateing: action.status
+        }
       case REMOVE_ACTION:
         return {
           ...state,
@@ -28,8 +34,8 @@ export const normalizePosts = () => {
     }
   }
   const wrapAndUpdateEntity = (state, action) => {
-    const newState = updateEntityStatus(state, action)
-    return !newState.id ? { 0: newState } : { [newState.id]: newState }
+    const newState = updateEntity(state, action)
+    return newState.id === undefined ? { 0: newState } : { [newState.id]: newState }
   }
   return (state = {}, action) => {
     let newState = action.entities && action.entities.posts
@@ -50,6 +56,12 @@ export const normalizePosts = () => {
       case ActionTypes.POST_SAVE_SUCCESS:
       case ActionTypes.POST_SAVE_FAILURE:
         return Object.assign({}, newState, wrapAndUpdateEntity(entity, { type: SAVE_ACTION, status: false }))
+      // update entity
+      case ActionTypes.POST_PUBLISH_REQUEST:
+        return Object.assign({}, newState, wrapAndUpdateEntity(entity, { type: UPDATE_ACTION, status: true }))
+      case ActionTypes.POST_PUBLISH_SUCCESS:
+      case ActionTypes.POST_PUBLISH_FAILURE:
+        return Object.assign({}, newState, wrapAndUpdateEntity(entity, { type: UPDATE_ACTION, status: false }))
       // remove entity
       case ActionTypes.POST_REMOVE_REQUEST:
         return Object.assign({}, newState, wrapAndUpdateEntity(entity, { type: REMOVE_ACTION, status: true }))

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import merge from 'lodash/merge'
 
 import * as ActionTypes from '../actions'
 import paginate from './paginate'
@@ -7,14 +6,34 @@ import { normalizePosts, normalizeUsers } from './normalize'
 
 // 登录用户
 const initLoginUser = {
-  uid: 10000,
-  username: 'linhui'
+  uid: 0,
+  username: '',
+  nickname: '',
+  isLogining: false
 }
 const loginUser = (state = initLoginUser, action) => {
-  if (action.response && action.response.loginUser) {
-    return merge({}, state, action.response.loginUser)
+  if (action.type === ActionTypes.USER_LOGIN_REQUEST) {
+    return {
+      ...state,
+      isLogining: true
+    }
+  } else if (action.type === ActionTypes.USER_LOGIN_SUCCESS) {
+    if (action.loginUser) {
+      return {
+        ...state,
+        ...action.loginUser,
+        isLogining: false
+      }
+    }
+    return state
+  } else if (action.type === ActionTypes.USER_LOGIN_FAILURE) {
+    return {
+      ...state,
+      isLogining: false
+    }
+  } else {
+    return state
   }
-  return state
 }
 
 // 实体对象列表

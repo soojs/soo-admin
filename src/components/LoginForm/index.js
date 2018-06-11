@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Icon, Input, Button } from 'antd'
 
 const FormItem = Form.Item
 
 class LoginForm extends React.Component {
-  handleSubmit (e) {
+  handleSubmit = (e) => {
     e.preventDefault()
     const { form } = this.props
     form.validateFields((err, values) => {
@@ -14,8 +14,15 @@ class LoginForm extends React.Component {
       }
     })
   }
+  // componentDidUpdate () {
+  //   const loginUser = this.props.loginUser || {}
+  //   if (loginUser.isLogining === false && loginUser.loginCode > 0) {
+  //     message.error('用户名密码错误')
+  //   }
+  // }
   render () {
     const { getFieldDecorator } = this.props.form
+    const loginUser = this.props.loginUser || {}
     return (
       <Form onSubmit={this.handleSubmit} className='login-form'>
         <FormItem>
@@ -33,16 +40,8 @@ class LoginForm extends React.Component {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true
-          })(
-            <Checkbox>Remember me</Checkbox>
-          )}
-          <a className='login-form-forgot' href=''>Forgot password</a>
-          <Button type='primary' htmlType='submit' className='login-form-button'>
-            Log in
-          </Button>
+          <Button type='primary' htmlType='submit' className='login-form-button'
+            loading={loginUser.isLogining}>Log in</Button>
         </FormItem>
       </Form>
     )
@@ -51,7 +50,8 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   form: PropTypes.object,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  loginUser: PropTypes.object
 }
 
 export default LoginForm

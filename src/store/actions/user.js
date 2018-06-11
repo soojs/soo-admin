@@ -1,9 +1,33 @@
+import { CALL_API } from '../../middleware/api'
+
+export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
+export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE'
+
+const doLogin = args => ({
+  [CALL_API]: {
+    types: [ USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE ],
+    method: 'POST',
+    url: '/api/v1/user/login',
+    data: args,
+    transformResponse: (data = {}) => {
+      data.uid = data.id
+      return { loginUser: data }
+    }
+  }
+})
+
+export const login = args => (dispatch, getState) => {
+  console.log(getState())
+  return dispatch(doLogin(args))
+}
+
 export const USER_PAGE_REQUEST = 'USER_PAGE_REQUEST'
 export const USER_PAGE_SUCCESS = 'USER_PAGE_SUCCESS'
 export const USER_PAGE_FAILURE = 'USER_PAGE_FAILURE'
 
 const fetchUserPage = pageArgs => ({
-  'CALL_API': {
+  [CALL_API]: {
     types: [ USER_PAGE_REQUEST, USER_PAGE_SUCCESS, USER_PAGE_FAILURE ],
     endpoint: `/api/v1/user`,
     schema: null

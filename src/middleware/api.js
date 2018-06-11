@@ -88,8 +88,14 @@ export default store => next => action => {
           type: successType
         }))
       }
+      // 将结果返回给最外层的`then`
+      return response
     })
     .catch((err) => {
+      // 先触发请求自身失败回调，比如解除按钮锁定等
+      next(actionWith({
+        type: failureType
+      }))
       if (err.response) {
         // 后台响应失败（httpcode不为2xx）
         next(actionWith({
@@ -109,5 +115,7 @@ export default store => next => action => {
           type: RESET_GLOBAL_ERROR
         }))
       }
+      // 将结果返回给最外层的`catch`
+      return Promise.reject(err)
     })
 }

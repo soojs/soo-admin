@@ -79,8 +79,11 @@ class PostForm extends Component {
             })(<Input.TextArea rows={10} />)}
           </FormItem>
           <FormItem {...tailFormItemLayout}>
-            <Button type='primary' htmlType='submit'>保存</Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handlePublish}>发布</Button>
+            <Button type='primary' htmlType='submit'
+              loading={entity.isSaveing} disabled={entity.isUpdateing}>保存</Button>
+            <Button style={{ marginLeft: 8 }}
+              loading={entity.isUpdateing} disabled={entity.isSaveing}
+              onClick={this.handlePublish}>发布</Button>
           </FormItem>
         </Form>
       </div>
