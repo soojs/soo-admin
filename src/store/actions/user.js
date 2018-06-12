@@ -36,7 +36,7 @@ const fetchUserPage = args => ({
     data: args,
     transformResponse: (data = {}) => {
       const { count, rows } = data
-      return Object.assign({ count }, normalize(rows, Schemas.POST_LIST))
+      return Object.assign({ count }, normalize(rows, Schemas.USER_LIST))
     }
   }
 })

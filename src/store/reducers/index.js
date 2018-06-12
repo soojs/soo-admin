@@ -7,8 +7,9 @@ import { normalizePosts, normalizeUsers } from './normalize'
 // 登录用户
 const initLoginUser = {
   uid: 0,
-  username: '',
+  username: 'bee',
   nickname: '',
+  password: '123qwe', // 方便测试使用
   isLogining: false
 }
 const loginUser = (state = initLoginUser, action) => {

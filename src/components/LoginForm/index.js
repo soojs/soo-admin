@@ -27,6 +27,7 @@ class LoginForm extends React.Component {
       <Form onSubmit={this.handleSubmit} className='login-form'>
         <FormItem>
           {getFieldDecorator('username', {
+            initialValue: loginUser.username,
             rules: [{ required: true, message: 'Please input your Username!' }]
           })(
             <Input prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder='Username' />
@@ -34,6 +35,7 @@ class LoginForm extends React.Component {
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
+            initialValue: loginUser.password,
             rules: [{ required: true, message: 'Please input your Password!' }]
           })(
             <Input prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />} type='password' placeholder='Password' />

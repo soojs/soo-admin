@@ -33,8 +33,8 @@ UserList.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  pagination: state.pagination.posts,
-  entities: state.entities.posts
+  pagination: state.pagination.users,
+  entities: state.entities.users
 })
 
 export default withRouter(connect(mapStateToProps, {

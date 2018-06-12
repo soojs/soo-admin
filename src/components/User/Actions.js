@@ -10,8 +10,11 @@ class UserActions extends Component {
     const { selectedRowKeys, isBatchLoading } = this.props.pagination
     const hasSelected = selectedRowKeys && selectedRowKeys.length > 0
     return (
-      <div className='post-list-actions'>
+      <div className='post-list-actions' style={{marginBottom: 10}}>
         <Button type='primary'
+          onClick={this.handleCreate}>新建</Button>
+        <Button type='primary'
+          style={{marginLeft: 8}}
           onClick={this.handleBatchDelete}
           disabled={!hasSelected}
           loading={isBatchLoading}>删除</Button>
