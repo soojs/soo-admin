@@ -1,7 +1,7 @@
-.bee-blog-main {
+.soo-blog-main {
   min-height: 100vh;
 }
-.bee-blog-main .logo {
+.soo-blog-main .logo {
   height: 32px;
   line-height: 32px;
   background: rgba(255,255,255,.2);
@@ -12,19 +12,19 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.bee-blog-main .logo-img {
+.soo-blog-main .logo-img {
   width: 100%;
 }
-.bee-blog-main .trigger {
+.soo-blog-main .trigger {
   font-size: 18px;
   line-height: 64px;
   padding: 0 24px;
   cursor: pointer;
   transition: color .3s;
 }
-.bee-blog-main .trigger:hover {
+.soo-blog-main .trigger:hover {
   color: #1890ff;
 }
-.bee-blog-main .ant-layout-sider {
+.soo-blog-main .ant-layout-sider {
   background-color: #fff;
 }

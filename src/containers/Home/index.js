@@ -59,7 +59,7 @@ class Home extends Component {
       return null
     })
     return (
-      <Layout className='bee-blog-main'>
+      <Layout className='soo-blog-main'>
         <Sider breakpoint='lg' trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className='logo'>幸福六局</div>
           <Menu theme='light' mode='inline' defaultSelectedKeys={selectedKeys}>
@@ -89,7 +89,7 @@ class Home extends Component {
             <Route path='/cate' component={CategoryComponent} />
           </Content>
           <Footer>
-            Console For Bee-Blog @2018
+            Console For Soo-Blog @2020
           </Footer>
         </Layout>
       </Layout>

@@ -25,7 +25,7 @@ module.exports = {
         '/api/**': {
           target: 'http://127.0.0.1:8889',
           onProxyRes: (proxyRes, req, res) => {
-            proxyRes.headers['X-Powered-By'] = 'Bee Blog'
+            proxyRes.headers['X-Powered-By'] = 'Soo Blog'
             proxyRes.headers['Cache-Control'] = 'no-cache'
           }
         }

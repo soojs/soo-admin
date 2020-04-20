@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import ListComponent from '../../components/PostList'
+import ActionComponent from '../../components/PostAction'
 import { loadPostPage } from '../../store/actions'
 
 class PostList extends Component {
@@ -13,6 +14,9 @@ class PostList extends Component {
   render () {
     return (
       <div className='post-list'>
+        <ActionComponent
+          pagination={this.props.pagination}
+        />
         <ListComponent
           pagination={this.props.pagination}
           entities={this.props.entities}

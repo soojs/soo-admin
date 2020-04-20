@@ -6,8 +6,8 @@ import { normalizePosts, normalizeUsers } from './normalize'
 
 // 登录用户
 const initLoginUser = {
-  uid: 0,
-  username: 'bee',
+  uid: process.env.NODE_ENV === 'production' ? 0 : 1,
+  username: 'soo',
   nickname: '',
   password: '123qwe', // 方便测试使用
   isLogining: false

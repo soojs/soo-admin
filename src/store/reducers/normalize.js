@@ -6,6 +6,20 @@ const SAVE_ACTION = 'save'
 const UPDATE_ACTION = 'update'
 const REMOVE_ACTION = 'remove'
 
+// 初始化Post列表，用
+const initPosts = {
+  0: {
+    id: 0,
+    tags: '',
+    desc: '',
+    title: '',
+    summary: '',
+    permalink: '',
+    status: 0,
+    isLoading: false
+  }
+}
+
 export const normalizePosts = () => {
   const updateEntity = (state = {}, action) => {
     switch (action.type) {
@@ -37,10 +51,12 @@ export const normalizePosts = () => {
     const newState = updateEntity(state, action)
     return newState.id === undefined ? { 0: newState } : { [newState.id]: newState }
   }
-  return (state = {}, action) => {
+  return (state = initPosts, action) => {
+    console.log(state)
     let newState = action.entities && action.entities.posts
       ? merge({}, state, action.entities.posts)
       : state
+    console.log(newState)
     // 如果`ekey`属性存在，则说明是针对单实体对象的操作
     let entity = action.ekey ? newState[action.ekey] : null
     switch (action.type) {

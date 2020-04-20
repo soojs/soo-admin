@@ -71,7 +71,7 @@ class PostForm extends Component {
           <FormItem {...formItemLayout} label='永久链接'>
             {getFieldDecorator('permalink', {
               initialValue: entity.permalink
-            })(<Input addonBefore='https://{bee-host}/' />)}
+            })(<Input addonBefore='https://{soo-host}/' />)}
           </FormItem>
           <FormItem {...formItemLayout} label='文章正文'>
             {getFieldDecorator('content', {

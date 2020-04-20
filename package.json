@@ -1,17 +1,16 @@
 {
-  "name": "bee-blog-admin",
+  "name": "soo-admin",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "antd": "^3.4.5",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "normalizr": "^3.2.4",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.13.1",
     "react-loadable": "^5.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^1.1.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
